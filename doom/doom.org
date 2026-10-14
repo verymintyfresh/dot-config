@@ -459,10 +459,18 @@ Mix in some keybindings to change the font size...
       "C-0"   #'doom/reset-font-size)
 #+end_src
 
-And use a nice theme.
+And use a nice theme. Why is it so hard to decide on something nice? Gotta find something pastel and cute, without it delving too into the realm of girlypop.
 
 #+begin_src emacs-lisp
-(setq doom-theme 'doom-oksolar-light)
+;; (setq doom-theme 'doom-dracula)
+;; (setq doom-theme 'doom-oksolar-light)
+(setq doom-theme 'doom-fairy-floss)
+#+end_src
+
+Do we work with transparency? Yeah, we do!
+
+#+begin_src emacs-lisp
+(add-to-list 'default-frame-alist '(alpha-background . 90))
 #+end_src
 
 Enable showing a word count in the modeline. This is only shown for the modes listed in =doom-modeline-continuous-word-count-modes= (Markdown, GFM and Org by default).
@@ -583,6 +591,15 @@ I want to get back into GTD, so I'm going to try out Trevoke's [[https://github.
   ;; the next TODO is automatically changed to NEXT.
   (setq org-edna-use-inheritance t)
   (org-edna-load)
+  :custom
+  ;; Configure TODO keyword states (options like "TODO(t)" or "DONE(d!)" are fine)
+  (org-todo-keywords '((sequence "TODO" "NEXT" "WAIT" "|" "DONE" "CNCL")))
+
+  ;; Map GTD semantic states to your keywords
+  (org-gtd-keyword-mapping '((todo . "TODO")
+                             (next . "NEXT")
+                             (wait . "WAIT")
+                             (canceled . "CNCL")))
   :bind
   (("C-c d c" . org-gtd-capture) ;; add item to inbox
    ("C-c d a" . org-agenda-list) ;; see what's on your plate today

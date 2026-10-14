@@ -94,7 +94,11 @@
       "C--"   #'doom/decrease-font-size
       "C-0"   #'doom/reset-font-size)
 
-(setq doom-theme 'doom-oksolar-light)
+;; (setq doom-theme 'doom-dracula)
+;; (setq doom-theme 'doom-oksolar-light)
+(setq doom-theme 'doom-fairy-floss)
+
+(add-to-list 'default-frame-alist '(alpha-background . 90))
 
 (setq doom-modeline-enable-word-count t)
 
@@ -144,6 +148,15 @@
   ;; the next TODO is automatically changed to NEXT.
   (setq org-edna-use-inheritance t)
   (org-edna-load)
+  :custom
+  ;; Configure TODO keyword states (options like "TODO(t)" or "DONE(d!)" are fine)
+  (org-todo-keywords '((sequence "TODO" "NEXT" "WAIT" "|" "DONE" "CNCL")))
+
+  ;; Map GTD semantic states to your keywords
+  (org-gtd-keyword-mapping '((todo . "TODO")
+                             (next . "NEXT")
+                             (wait . "WAIT")
+                             (canceled . "CNCL")))
   :bind
   (("C-c d c" . org-gtd-capture) ;; add item to inbox
    ("C-c d a" . org-agenda-list) ;; see what's on your plate today
